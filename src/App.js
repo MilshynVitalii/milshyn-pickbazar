@@ -8,14 +8,14 @@ import Checkout from './pages/Checkout';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/product" exact component={Product} />
-        <Route path="/checkout" exact component={Checkout} />
+        <Route path="/product" component={Product} />
+        <Route path="/checkout" component={Checkout} />
       </Switch>
-    </div>
+    </>
   );
 }
 

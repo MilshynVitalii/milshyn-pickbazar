@@ -1,0 +1,20 @@
+.main {
+  background: url("../assets/main-bg.png") no-repeat center top;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &__title {
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
+  }
+
+  &__descr {
+    color: #77798c;
+    font-size: 19px;
+  }
+}

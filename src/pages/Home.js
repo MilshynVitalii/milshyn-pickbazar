@@ -1,19 +1,13 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-
-import {inc, dec} from '../redux/actions/counter';
 
 function Home() {
-  const dispatch = useDispatch();
-  const value = useSelector(({counter}) => counter.value);
-
   return (
-    <>
-      <h3>Home</h3>
-      <button type="button" onClick={() => dispatch(dec)}>-</button>
-      <span>{value}</span>
-      <button type="button" onClick={() => dispatch(inc)}>+</button>
-    </>
+    <div className="main">
+      <div className="container">
+        <h1 className="main__title">Groceries Delivered in 90 Minute</h1>
+        <div className="main__descr">Get your healthy foods & snacks delivered at your doorsteps all day everyday</div>
+      </div>
+    </div>
   )
 }
 
