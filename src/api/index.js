@@ -12,13 +12,4 @@ api.interceptors.response.use((response) => response, function (error) {
     }
 });
 
-// api.interceptors.request.use((config) => {
-//     if (getCookie('user-key')) {
-//         config.headers['Authorization'] = `Bearer ${getCookie('user-key')}`
-//     }
-
-//     return config
-// });
-
-// export const endpoint = process.env.baseUrl;
 export default api

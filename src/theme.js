@@ -79,7 +79,8 @@ let theme = unstable_createMuiStrictModeTheme({
     MuiButton: {
       root: {
         textTransform: 'none',
-        fontSize: '14px'
+        fontSize: '14px',
+        fontWeight: 700
       }
     },
     MuiAlert: {

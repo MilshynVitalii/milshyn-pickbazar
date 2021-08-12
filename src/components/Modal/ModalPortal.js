@@ -1,27 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+function ModalPortal(props) {
+  const elem = React.useMemo(() => document.createElement('div'), []);
 
-export class ModalPortal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.root = document.createElement('div');
-  }
+  React.useEffect(() => {
+    document.body.appendChild(elem);
+    
+    return () => {
+      document.body.removeChild(elem);
+    }
+  }, [elem])
 
-  componentDidMount() {
-    document.body.appendChild(this.root);
-  }
-
-  componentWillUnmount() {
-    document.body.removeChild(this.root);
-  }
-
-  render(){
-    return ReactDOM.createPortal(
-      this.props.children,
-      this.root
-    );
-  }
+  return ReactDOM.createPortal(
+    props.children,
+    elem
+  );
 }
 
 export default ModalPortal;

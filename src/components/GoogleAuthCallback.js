@@ -1,5 +1,5 @@
 import React from "react";
-import {useLocation, useHistory } from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import {useDispatch} from 'react-redux';
 
 import {googleSignIn} from '../redux/actions/auth';
@@ -14,10 +14,16 @@ function GoogleAuthCallback() {
     if (!location) {
       return;
     }
-    const { search } = location;
-    api.get(`/auth/google/callback?${search}`)
-       .then(res => dispatch(googleSignIn(res.data)))
-       .then(() => history.replace('/'));
+    const searchParams = new URLSearchParams(location.search);
+    const access_token = searchParams.get('access_token');
+
+    api.get('/auth/google/callback', {
+      params: {
+        access_token
+      }
+    })
+      .then(res => dispatch(googleSignIn(res.data)))
+      .then(() => history.replace('/'));
   }, [location, dispatch, history]);
 
   return <></>;

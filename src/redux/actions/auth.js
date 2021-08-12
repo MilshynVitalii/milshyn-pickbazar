@@ -6,11 +6,9 @@ export function signUp(data) {
   return async (dispatch) => {
     try {
       const res = await auth.signUp(data);
-      if(res?.status === 200) {
-        dispatch({type: SIGN_UP, payload: res.data.user});
-        dispatch(showAlert('registration completed successfully', 'success', 3000));
-        dispatch(setModal(''));
-      }
+      dispatch({type: SIGN_UP, payload: res.data.user});
+      dispatch(showAlert('registration completed successfully', 'success', 3000));
+      dispatch(setModal(''));
     } catch(e) {
       console.log(e.message);
     }
@@ -21,11 +19,9 @@ export function signIn(data) {
   return async (dispatch) => {
     try {
       const res = await auth.signIn(data);
-      if(res?.status === 200) {
-        dispatch({type: SIGN_IN, payload: res.data.user});
-        dispatch(showAlert('logined successfully', 'success', 3000));
-        dispatch(setModal(''));
-      }
+      dispatch({type: SIGN_IN, payload: res.data.user});
+      dispatch(showAlert('logined successfully', 'success', 3000));
+      dispatch(setModal(''));
     } catch(e) {
       console.log(e.message);
     }

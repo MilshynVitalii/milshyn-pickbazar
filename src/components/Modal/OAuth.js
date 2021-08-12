@@ -18,7 +18,7 @@ function GoogleIconComponent() {
   return <img src={GoogleIcon} alt="facebook" />
 }
 
-const useStyles = makeStyles(({palette}) => ({
+const useStyles = makeStyles({
   facebookButton: {
     marginTop: '15px',
     background: '#4267B2',
@@ -48,7 +48,7 @@ const useStyles = makeStyles(({palette}) => ({
     background: '#ffffff',
     zIndex: 10,
   }
-}));
+});
 
 function OAuth() {
   const styles = useStyles();
@@ -63,7 +63,6 @@ function OAuth() {
         variant="contained" 
         startIcon={<SvgIcon component={FaceBookIconComponent} />}
         className={styles.facebookButton}
-        onClick={()=>{}} 
         fullWidth
       >Continue with Facebook</Button>
       <Button 
@@ -72,9 +71,8 @@ function OAuth() {
         variant="contained" 
         startIcon={<SvgIcon component={GoogleIconComponent} />}
         className={styles.googleButton}
-        onClick={()=>{}}
         fullWidth 
-      >Continue with Facebook</Button>
+      >Continue with Google</Button>
     </Box>
   )
 }

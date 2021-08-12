@@ -1,5 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import cn from 'classnames';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
@@ -21,26 +22,12 @@ import {setModal} from '../../redux/actions/app';
 import {modalsDescription as modals} from './constants';
 import useStyles from './styles';
 
-const validationDescr = {
-  identifier: yup.string().min(4, 'Too short!').required("Field is required"),
-  username: yup.string().min(4, 'Too short!').required("Field is required"),
-  email: yup.string().email('Incorrect email').required("Field is required"),
-  password: yup.string().required("Field is required"),
-  confirmPassword: yup.string().oneOf([yup.ref('password')], "Passwords doesn't match").required("Field is required")
-}
-
 function Modal() {
   const styles = useStyles();
   const dispatch = useDispatch();
   const {modal} = useSelector(state => state.app);
 
-  const validation = {};
-
-  for(const key in modals[modal]?.values) {
-    validation[key] = validationDescr[key];
-  }
-
-  const validationSchema = yup.object().shape(validation);
+  const validationSchema = yup.object().shape(modals[modal]?.validation);
 
   const handleModalVisibility = () => dispatch(setModal(''));
 
@@ -57,7 +44,7 @@ function Modal() {
         open={modal in modals} 
         onClose={handleModalVisibility} 
         aria-labelledby="form-dialog-title"
-        classes={{paper: modal === 'signIn' ? styles.dialogSignIn : styles.dialog}}
+        classes={{paper: cn({[styles.dialogSignIn]: modal === 'signIn', [styles.dialog]: modal !== 'signIn'})}}
         scroll="body"
       >
         <DialogTitle id="form-dialog-title" color="primary" className={styles.title}>{modals[modal]?.title}</DialogTitle>
@@ -68,13 +55,12 @@ function Modal() {
             initialValues={modals[modal]?.values}
             validateOnBlur
             validationSchema={validationSchema}
-            onSubmit={(values, actions) => {
-              actions.resetForm();
+            onSubmit={(values) => {
               dispatch(modals[modal]?.action(values));
             }}
           >
             {({values, errors, touched, isValid, dirty, handleChange, handleBlur, handleSubmit}) => {
-              return <form className="" autoComplete="off">
+              return <form autoComplete="off">
                 {
                   modals[modal]?.values && Object.keys(modals[modal].values).map(key => {
                     return <FormControl key={key} className={styles.formControl} fullWidth error={errors[key] && touched[key]}>
@@ -107,7 +93,7 @@ function Modal() {
             }}
           </Formik>
         </DialogContent>
-        <DialogActions className={modal === 'signIn' ? styles.actionsSignIn : styles.actions}>
+        <DialogActions className={cn({[styles.actionsSignIn]: modal === 'signIn', [styles.actions]: modal !== 'signIn'})}>
           {
             modal !== 'reset' && <OAuth />
           }

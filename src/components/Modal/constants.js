@@ -1,3 +1,4 @@
+import * as yup from 'yup';
 import {signUp, signIn} from '../../redux/actions/auth';
 
 export const modalsDescription = {
@@ -10,6 +11,12 @@ export const modalsDescription = {
       email: '',
       password: '',
       confirmPassword: ''
+    },
+    validation: {
+      username: yup.string().min(4, 'Too short!').required("Field is required"),
+      email: yup.string().email('Incorrect email').required("Field is required"),
+      password: yup.string().required("Field is required"),
+      confirmPassword: yup.string().oneOf([yup.ref('password')], "Passwords doesn't match").required("Field is required")
     },
     redirect: {
       text: 'Already have an account?',
@@ -25,6 +32,10 @@ export const modalsDescription = {
       identifier: '',
       password: ''
     },
+    validation: {
+      identifier: yup.string().min(4, 'Too short!').required("Field is required"),
+      password: yup.string().required("Field is required")
+    },
     redirect: {
       text: 'Don’t have account yet?',
       linkText: 'Sign Up',
@@ -37,6 +48,9 @@ export const modalsDescription = {
     action: 'reset',
     values: {
       email: ''
+    },
+    validation: {
+      email: yup.string().email('Incorrect email').required("Field is required")
     },
     redirect: {
       text: 'Back to ',
