@@ -3,7 +3,6 @@ import {useLocation, useHistory} from "react-router-dom";
 import {useDispatch} from 'react-redux';
 
 import {googleSignIn} from '../redux/actions/auth';
-import api from '../api';
 
 function GoogleAuthCallback() {
   const dispatch = useDispatch();
@@ -14,16 +13,14 @@ function GoogleAuthCallback() {
     if (!location) {
       return;
     }
+    
     const searchParams = new URLSearchParams(location.search);
     const access_token = searchParams.get('access_token');
 
-    api.get('/auth/google/callback', {
-      params: {
-        access_token
-      }
-    })
-      .then(res => dispatch(googleSignIn(res.data)))
-      .then(() => history.replace('/'));
+    dispatch(googleSignIn({params: {access_token}}));
+
+    history.replace('/');
+
   }, [location, dispatch, history]);
 
   return <></>;

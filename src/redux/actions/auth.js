@@ -29,10 +29,15 @@ export function signIn(data) {
 }
 
 export function googleSignIn(data) {
-  return {
-    type: GOOGLE_SIGN_IN,
-    payload: data.user
-  }
+  return async (dispatch) => {
+    try {
+      const res = await auth.googleSignIn(data);
+      dispatch({type: GOOGLE_SIGN_IN, payload: res.data.user});
+      dispatch(showAlert('logined successfully', 'success', 3000));
+    } catch(e) {
+      console.log(e.message);
+    }
+  };
 }
 
 export function setLogined(status) {

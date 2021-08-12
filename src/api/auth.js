@@ -10,4 +10,9 @@ async function signIn(data) {
     return res;
 }
 
-export {signUp, signIn};
+async function googleSignIn(data) {
+    const res = await api.get(`/auth/google/callback`, data);
+    return res;
+}
+
+export {signUp, signIn, googleSignIn};
