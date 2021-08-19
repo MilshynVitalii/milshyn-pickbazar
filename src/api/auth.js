@@ -11,7 +11,7 @@ async function signIn(data) {
 }
 
 async function googleSignIn(data) {
-    const res = await api.get(`/auth/google/callback`, data);
+    const res = await api.get('/auth/google/callback', data);
     return res;
 }
 

@@ -1,6 +1,7 @@
 import {unstable_createMuiStrictModeTheme} from '@material-ui/core/styles';
 
 let theme = unstable_createMuiStrictModeTheme({
+  spacing: 15,
   breakpoints: {
     values: {
       xs: 540,

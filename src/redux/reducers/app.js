@@ -1,11 +1,20 @@
-import {SHOW_ALERT, HIDE_ALERT, SET_MODAL} from '../types'; 
+import {SHOW_ALERT,
+  HIDE_ALERT,
+  SET_MODAL,
+  FETCH_CAROUSEL_DATA,
+  FETCH_CATEGORIES,
+  SET_ACTIVE_CATEGORY
+} from '../types'; 
 
 const initialState = {
   alert: {
     text: '',
     type: 'info'
   },
-  modal: ''
+  modal: '',
+  carouselData: [],
+  categories: [],
+  activeCategory: {parent: null, child: null}
 };
 
 function appReducer(state = initialState, action) {
@@ -17,6 +26,19 @@ function appReducer(state = initialState, action) {
     case SET_MODAL: {
       return {...state, modal: action.payload}
     }
+    case FETCH_CAROUSEL_DATA: {
+      return {...state, carouselData: [...action.payload]}
+    }
+    case FETCH_CATEGORIES:
+      return {
+        ...state, 
+        categories: action.payload
+      }
+    case SET_ACTIVE_CATEGORY:
+      return {
+        ...state, 
+        activeCategory: action.payload
+      }
     default:
       return state
   }

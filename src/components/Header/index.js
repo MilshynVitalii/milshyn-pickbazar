@@ -1,9 +1,8 @@
 import React from 'react';
+import cn from 'classnames';
 import {useDispatch, useSelector} from 'react-redux';
+import {useLocation, Link} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
-
-import {setModal} from '../redux/actions/app';
-import {setLogined} from '../redux/actions/auth';
 
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -14,13 +13,21 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Logo from '../assets/Logo.svg';
-import SearchIcon from '../assets/Search.svg';
-import UserLogo from '../assets/UserLogo.png';
+import {setModal} from '../../redux/actions/app';
+import {setLogined} from '../../redux/actions/auth';
+
+import Logo from '../../assets/Logo.svg';
+import SearchIcon from '../../assets/Search.svg';
+import UserLogo from '../../assets/UserLogo.png';
 
 const useStyles = makeStyles({
     appBar: {
-      boxShadow: 'none'
+      boxShadow: 'none',
+      backgroundColor: '#ffffff'
+    },
+    appBarHome: {
+      boxShadow: 'none',
+      backgroundColor: '#fafafa'
     },
     input: {
       width: '630px',
@@ -47,6 +54,7 @@ const useStyles = makeStyles({
 function Header() {
   const styles = useStyles();
   const dispatch = useDispatch();
+  const {pathname} = useLocation();
   const {logined} = useSelector(state => state.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -66,10 +74,12 @@ function Header() {
   const onSignUp = () => dispatch(setModal('signUp'));
 
   return (
-    <AppBar position="fixed" color="transparent" className={styles.appBar}>
+    <AppBar position="fixed" color="transparent" className={cn({[styles.appBar]: pathname !== '/', [styles.appBarHome]: pathname === '/'})}>
       <Container maxWidth="xl">
         <Grid container alignItems="center">
-          <img src={Logo} alt="logo" />
+          <Link to="/">
+            <img src={Logo} alt="logo" />
+          </Link>
           <FilledInput
             className={styles.input}
             type="text"
