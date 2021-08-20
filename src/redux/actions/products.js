@@ -23,7 +23,7 @@ export function fetchProducts(_start = 0, _limit = 10) {
   }
 }
 
-export function fetchMoreProducts(_start = 0, _limit = 10, parentCategory = null, category = null) {
+export function fetchMoreProducts(parentCategory = null, category = null, _start = 0, _limit = 10) {
   return async (dispatch) => {
     const res = await productsApi.fetchProducts({
       params: {

@@ -1,41 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {makeStyles} from '@material-ui/core/styles';
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {Thumbs} from 'swiper/core';
 
-import "swiper/swiper.min.css";
-import "swiper/components/thumbs/thumbs.min.css"
-
-SwiperCore.use([Thumbs]);
-
-const useStyles = makeStyles(({palette}) => ({
-  mainImage: {
-    width: '60%',
-    height: 'auto'
-  },
-  activeSlide: {
-    textAlign: 'center',
-    alignSelf: 'center'
-  },
-  thumbnails: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 'auto',
-    border: '2px solid #f0f0f0',
-    borderRadius: '6px',
-    '&.swiper-slide-thumb-active': {
-      borderColor: palette.primary.main
-    }
-  },
-  activeThumb: {
-    borderColor: palette.primary.main
-  }
-}));
-
-function Gallery({photos}) {
-  const styles = useStyles();
+function Gallery({photos, styles}) {
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
   
   return (
@@ -85,5 +52,6 @@ function Gallery({photos}) {
 export default Gallery;
 
 Gallery.propTypes = {
-  photos: PropTypes.array.isRequired
+  photos: PropTypes.array.isRequired,
+  styles: PropTypes.object
 }

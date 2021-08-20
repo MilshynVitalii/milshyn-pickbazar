@@ -8,6 +8,11 @@ import store from './redux/store';
 
 import App from './App';
 
+import "swiper/swiper.min.css";
+import "swiper/components/navigation/navigation.min.css";
+import "swiper/components/thumbs/thumbs.min.css";
+import './config/swiper';
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
@@ -18,40 +17,7 @@ function GoogleIconComponent() {
   return <img src={GoogleIcon} alt="facebook" />
 }
 
-const useStyles = makeStyles({
-  facebookButton: {
-    marginTop: '15px',
-    background: '#4267B2',
-    height: '48px',
-    '&:hover': {
-      background: "#385185"
-    }
-  },
-  googleButton: {
-    marginTop: '15px',
-    background: '#4286F4',
-    height: '48px',
-    '&:hover': {
-      background: "#2462c7"
-    }
-  },
-  divider: {
-    position: 'relative',
-    bottom: '17px',
-    zIndex: 0,
-  },
-  dividerText: {
-    position: 'relative',
-    display: 'inline-block',
-    fontSize: '15px',
-    padding: '15px 3px 5px',
-    background: '#ffffff',
-    zIndex: 10,
-  }
-});
-
-function OAuth() {
-  const styles = useStyles();
+function OAuth({styles}) {
 
   return (
     <Box component="span">

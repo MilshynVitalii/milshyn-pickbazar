@@ -84,5 +84,34 @@ export default makeStyles(({palette}) => ({
       fontWeight: 700,
       color: palette.primary.main
     }
+  },
+  facebookButton: {
+    marginTop: '15px',
+    background: '#4267B2',
+    height: '48px',
+    '&:hover': {
+      background: "#385185"
+    }
+  },
+  googleButton: {
+    marginTop: '15px',
+    background: '#4286F4',
+    height: '48px',
+    '&:hover': {
+      background: "#2462c7"
+    }
+  },
+  divider: {
+    position: 'relative',
+    bottom: '17px',
+    zIndex: 0,
+  },
+  dividerText: {
+    position: 'relative',
+    display: 'inline-block',
+    fontSize: '15px',
+    padding: '15px 3px 5px',
+    background: '#ffffff',
+    zIndex: 10,
   }
 }));

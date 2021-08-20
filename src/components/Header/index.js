@@ -1,8 +1,6 @@
 import React from 'react';
-import cn from 'classnames';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, Link} from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -20,36 +18,7 @@ import Logo from '../../assets/Logo.svg';
 import SearchIcon from '../../assets/Search.svg';
 import UserLogo from '../../assets/UserLogo.png';
 
-const useStyles = makeStyles({
-    appBar: {
-      boxShadow: 'none',
-      backgroundColor: '#ffffff'
-    },
-    appBarHome: {
-      boxShadow: 'none',
-      backgroundColor: '#fafafa'
-    },
-    input: {
-      width: '630px',
-      margin: '10px 25px'
-    },
-    btn: {
-      marginLeft: 'auto'
-    },
-    userMenuBtn: {
-      marginLeft: 'auto',
-      minWidth: 'auto',
-      minHeight: 'auto',
-      padding: '3px',
-      borderRadius: '50%'
-    },
-    userMenuLink: {
-      minWidth: '200px',
-      fontSize: '15px',
-      fontWeight: 700,
-      padding: '16px 30px'
-    }
-});
+import useStyles from './styles';
 
 function Header() {
   const styles = useStyles();
@@ -57,6 +26,8 @@ function Header() {
   const {pathname} = useLocation();
   const {logined} = useSelector(state => state.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const appBarClass = pathname === '/' ? styles.appBarHome : styles.appBar;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -74,7 +45,7 @@ function Header() {
   const onSignUp = () => dispatch(setModal('signUp'));
 
   return (
-    <AppBar position="fixed" color="transparent" className={cn({[styles.appBar]: pathname !== '/', [styles.appBarHome]: pathname === '/'})}>
+    <AppBar position="fixed" color="transparent" className={appBarClass}>
       <Container maxWidth="xl">
         <Grid container alignItems="center">
           <Link to="/">

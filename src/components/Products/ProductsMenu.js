@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {ReactSVG} from 'react-svg';
 
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
@@ -46,7 +45,7 @@ function ProductsMenu({styles}) {
             >
               <ListItemIcon className={styles.icon}>
                 <SvgIcon fontSize="small" viewBox="0 0 18 18">
-                  <ReactSVG src={menuIcons[`Icon${category.id}`]} wrapper="svg"/>
+                  {menuIcons[category.id]}
                 </SvgIcon>
               </ListItemIcon>
               <ListItemText classes={{primary: styles.itemMainText}} primary={category.title} />

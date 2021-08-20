@@ -25,7 +25,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/product/:categoryID/:productID" component={Product} />
+        <Route path="/product/:productID" component={Product} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/auth/google/callback" component={GoogleAuthCallback}/>
       </Switch>

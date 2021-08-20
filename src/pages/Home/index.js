@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import {useDispatch} from 'react-redux';
 
 import Paper from '@material-ui/core/Paper';
@@ -7,40 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
-import Carousel from '../components/Carousel';
-import Products from '../components/Products';
-import {fetchCarouselData} from '../redux/actions/app';
-import {fetchProducts} from '../redux/actions/products';
-import {fetchCategories, setActiveCategory} from '../redux/actions/app';
-import BG from '../assets/main-bg.png';
+import Carousel from '../../components/Carousel';
+import Products from '../../components/Products';
+import {fetchCarouselData} from '../../redux/actions/app';
+import {fetchProducts} from '../../redux/actions/products';
+import {fetchCategories, setActiveCategory} from '../../redux/actions/app';
 
-const useStyles = makeStyles({
-  grid: {
-    height: '100vh',
-    background: `url(${BG}) no-repeat center top`,
-    backgroundSize: 'cover'
-  },
-  title: {
-    fontSize: '45px',
-    width: '100%',
-    textAlign: 'center'
-  },
-  subtitle: {
-    fontSize: '19px',
-    textAlign: 'center'
-  },
-  carousel: {
-    position: 'relative',
-    backgroundColor: '#ffffff',
-    '& ul': {
-      margin: '0px !important',
-      display: 'flex !important'
-    }
-  },
-  products: {
-    borderTop: '1px solid #f7f7f7'
-  }
-});
+import useStyles from './styles';
 
 function Home() {
   const styles = useStyles();
@@ -49,8 +21,8 @@ function Home() {
   React.useEffect(() => {
     dispatch(fetchCarouselData());
     dispatch(fetchCategories());
-    dispatch(setActiveCategory(null, null));
-    dispatch(fetchProducts(0, 10));
+    dispatch(setActiveCategory());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return (

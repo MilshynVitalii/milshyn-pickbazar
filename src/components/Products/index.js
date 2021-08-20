@@ -15,7 +15,7 @@ function Products() {
   const {activeCategory} = useSelector(state => state.app);
   const dispatch = useDispatch();
 
-  const loadMoreProducts = () => dispatch(fetchMoreProducts(products.length, 10, activeCategory.parent, activeCategory.child));
+  const loadMoreProducts = () => dispatch(fetchMoreProducts(activeCategory.parent, activeCategory.child, products.length));
 
   return (
     <Grid container>

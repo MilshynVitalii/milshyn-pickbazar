@@ -1,18 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
-function ScrollToTop({history, children}) {
-  React.useEffect(() => {
-    const unlisten = history.listen(() => {
-      window.scrollTo(0, 0);
-    });
+function ScrollToTop({children}) {
+  const history = useHistory();
 
-    return () => {
-      unlisten();
-    }
-  }, [history]);
+  React.useEffect(() => history.listen(() => window.scrollTo(0, 0)), [history]);
 
   return <>{children}</>;
 }
 
-export default withRouter(ScrollToTop);
+export default ScrollToTop;

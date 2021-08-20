@@ -95,7 +95,7 @@ function Modal() {
         </DialogContent>
         <DialogActions className={cn({[styles.actionsSignIn]: modal === 'signIn', [styles.actions]: modal !== 'signIn'})}>
           {
-            modal !== 'reset' && <OAuth />
+            modal !== 'reset' && <OAuth styles={styles} />
           }
           <Typography variant="subtitle1" component="p" className={styles.redirect}>
             {modals[modal]?.redirect.text} <Link 
