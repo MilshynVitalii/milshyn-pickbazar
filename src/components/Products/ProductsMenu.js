@@ -10,8 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import SvgIcon  from '@material-ui/core/SvgIcon';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import {fetchByParentCategory} from '../../redux/actions/products';
-import {fetchByChildCategory} from '../../redux/actions/products';
+import {fetchProducts} from '../../redux/actions/products';
 import {setActiveCategory} from '../../redux/actions/app';
 import {menuIcons} from './constants';
 
@@ -21,12 +20,12 @@ function ProductsMenu({styles}) {
 
   const onListOpen = (id) => {
     dispatch(setActiveCategory(id));
-    dispatch(fetchByParentCategory(id));
+    dispatch(fetchProducts({parent: id}));
   };
 
   const onChildCategoryClick = (id) => {
     dispatch(setActiveCategory(activeCategory.parent, id));
-    dispatch(fetchByChildCategory(id));
+    dispatch(fetchProducts({child: id}));
   };
 
   return (

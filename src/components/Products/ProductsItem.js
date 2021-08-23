@@ -42,7 +42,7 @@ function ProductItem({product, styles}) {
               ${product.price}
             </Typography>
           </Box>
-          <CartBtn />
+          <CartBtn styles={styles} />
         </CardActions>
       </Card>
     </Grid>

@@ -28,7 +28,7 @@ function Description({isFetching, product, styles}) {
       </Typography>
 
       <Box mt={3}>
-        <CartButton disabled={!Boolean(product?.name) || isFetching}/>
+        <CartButton disabled={!Boolean(product?.name) || isFetching} styles={styles}/>
       </Box>
       <Box mt={2}>
         <Typography variant="body2" component="span" className={styles.categoryText}>{product?.category?.parentCategory?.title}</Typography>

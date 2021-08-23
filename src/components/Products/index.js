@@ -5,17 +5,16 @@ import Grid from '@material-ui/core/Grid';
 
 import ProductsContainer from './ProductsContainer';
 import ProductsMenu from './ProductsMenu';
-import {fetchMoreProducts} from '../../redux/actions/products';
+import {fetchProducts} from '../../redux/actions/products';
 
 import useStyles from './styles';
 
 function Products() {
   const styles = useStyles();
   const {products, fetchMore} = useSelector(state => state.products);
-  const {activeCategory} = useSelector(state => state.app);
   const dispatch = useDispatch();
-
-  const loadMoreProducts = () => dispatch(fetchMoreProducts(activeCategory.parent, activeCategory.child, products.length));
+  
+  const loadMoreProducts = () => dispatch(fetchProducts({start: products.length}, true));
 
   return (
     <Grid container>

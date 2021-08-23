@@ -14,7 +14,8 @@ import Gallery from '../../components/Product/Gallery';
 import Description from '../../components/Product/Description';
 import ProductsItem from '../../components/Products/ProductsItem';
 import useProductsStyles from '../../components/Products/styles';
-import {fetchByParentCategory, setActiveProduct} from '../../redux/actions/products';
+import {setActiveProduct, fetchProducts} from '../../redux/actions/products';
+import {setActiveCategory} from '../../redux/actions/app';
 import {ReactComponent as Empty} from '../../assets/empty.svg';
 
 import useStyles from './styles';
@@ -28,10 +29,11 @@ function Product() {
   const {products, product, isProductFetching} = useSelector(state => state.products);
 
   const parentCategory = product?.category?.parentCategory?.id;
-  
+
   React.useEffect(() => {
     dispatch(setActiveProduct(productID));
-    dispatch(fetchByParentCategory(parentCategory));
+    dispatch(setActiveCategory(parentCategory, null));
+    dispatch(fetchProducts());
   }, [dispatch, productID, parentCategory]);
 
   return (

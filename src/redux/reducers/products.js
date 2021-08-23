@@ -1,15 +1,10 @@
-import {
-  FETCH_PRODUCTS, 
-  FETCH_MORE_PRODUCTS, 
-  FETCH_BY_PARENT_CATEGORY, 
-  FETCH_BY_CHILD_CATEGORY,
-  SET_ACTIVE_PRODUCT,
-  SET_PRODUCT_FETCHING
-} from '../types'; 
+import { FETCH_PRODUCTS, SET_ACTIVE_PRODUCT, SET_PRODUCT_FETCHING} from '../types'; 
 
 const initialState = {
   products: [],
   product: {},
+  fetchingPosition: 0,
+  fetchingLimit: 10,
   fetchMore: false,
   isProductFetching: false
 };
@@ -19,26 +14,8 @@ function productsReducer(state = initialState, action) {
     case FETCH_PRODUCTS:
       return {
         ...state, 
-        products: action.payload, 
-        fetchMore: !(action.payload.length < 10)
-      }
-    case FETCH_MORE_PRODUCTS:
-      return {
-        ...state, 
-        products:  [...state.products, ...action.payload], 
-        fetchMore: !(action.payload.length < 10)
-      }
-    case FETCH_BY_PARENT_CATEGORY:
-      return {
-        ...state, 
-        products: action.payload, 
-        fetchMore: !(action.payload.length < 10)
-      }
-    case FETCH_BY_CHILD_CATEGORY:
-      return {
-        ...state, 
-        products: action.payload, 
-        fetchMore: !(action.payload.length < 10)
+        products: action.payload.productsConcat ? [...state.products, ...action.payload.data] : action.payload.data, 
+        fetchMore: !(action.payload.data.length < state.fetchingLimit)
       }
     case SET_ACTIVE_PRODUCT:
       return {

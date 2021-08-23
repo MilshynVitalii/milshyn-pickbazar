@@ -90,5 +90,14 @@ export default makeStyles(({palette}) => ({
   },
   infoInvisible: {
     display: 'none'
+  },
+  cartButton: {
+    borderRadius: '85px',
+    padding: '6px 17px',
+    borderColor: '#F7F7F7',
+    '&:hover': {
+      backgroundColor: palette.primary.main,
+      color: '#ffffff'
+    }
   }
 }));

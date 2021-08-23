@@ -33,5 +33,21 @@ export default makeStyles({
   action: {
     padding: '35px 16px 90px',
     justifyContent: 'center'
-  }
+  },
+  slideCard: colors => ({
+    color: '#ffffff',
+    background: `linear-gradient(90deg, ${colors.start}, ${colors.end})`
+  }),
+  slideCardBtn: colors => ({
+    fontSize: '18px',
+    color: colors.start,
+    backgroundColor: '#ffffff',
+    borderRadius: '180px',
+    padding: '10px',
+    width: '180px',
+    '&:hover': {
+      backgroundColor: '#ffffff',
+      opacity: 0.8
+    }
+  })
 });

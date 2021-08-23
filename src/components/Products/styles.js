@@ -109,5 +109,14 @@ export default makeStyles(({palette}) => ({
     fontSize: '13px',
     textDecoration: 'line-through',
     color: '#ffad5e'
+  },
+  cartButton: {
+    borderRadius: '85px',
+    padding: '6px 17px',
+    borderColor: '#F7F7F7',
+    '&:hover': {
+      backgroundColor: palette.primary.main,
+      color: '#ffffff'
+    }
   }
 }));
