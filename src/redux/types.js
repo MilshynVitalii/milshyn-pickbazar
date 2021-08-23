@@ -1,7 +1,15 @@
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_IN = 'SIGN_IN';
+export const GOOGLE_SIGN_IN = 'GOOGLE_SIGN_IN';
+
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';
 export const SET_MODAL = 'SET_MODAL';
 export const SET_LOGINED = 'SET_LOGINED';
-export const GOOGLE_SIGN_IN = 'GOOGLE_SIGN_IN';
+export const FETCH_CAROUSEL_DATA = 'FETCH_CAROUSEL_DATA';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const SET_ACTIVE_CATEGORY = 'SET_ACTIVE_CATEGORY';
+
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const SET_ACTIVE_PRODUCT = 'SET_ACTIVE_PRODUCT';
+export const SET_PRODUCT_FETCHING = 'SET_PRODUCT_FETCHING';

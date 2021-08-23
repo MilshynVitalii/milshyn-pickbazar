@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch,Route} from "react-router-dom";
 import {useSelector} from 'react-redux';
 import {ThemeProvider} from '@material-ui/core/styles';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Alert from '@material-ui/lab/Alert';
 
@@ -24,7 +25,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/product" component={Product} />
+        <Route path="/product/:productID" component={Product} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/auth/google/callback" component={GoogleAuthCallback}/>
       </Switch>

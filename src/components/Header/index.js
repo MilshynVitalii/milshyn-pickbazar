@@ -1,9 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {makeStyles} from '@material-ui/core/styles';
-
-import {setModal} from '../redux/actions/app';
-import {setLogined} from '../redux/actions/auth';
+import {useLocation, Link} from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
@@ -14,41 +11,23 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Logo from '../assets/Logo.svg';
-import SearchIcon from '../assets/Search.svg';
-import UserLogo from '../assets/UserLogo.png';
+import {setModal} from '../../redux/actions/app';
+import {setLogined} from '../../redux/actions/auth';
 
-const useStyles = makeStyles({
-    appBar: {
-      boxShadow: 'none'
-    },
-    input: {
-      width: '630px',
-      margin: '10px 25px'
-    },
-    btn: {
-      marginLeft: 'auto'
-    },
-    userMenuBtn: {
-      marginLeft: 'auto',
-      minWidth: 'auto',
-      minHeight: 'auto',
-      padding: '3px',
-      borderRadius: '50%'
-    },
-    userMenuLink: {
-      minWidth: '200px',
-      fontSize: '15px',
-      fontWeight: 700,
-      padding: '16px 30px'
-    }
-});
+import Logo from '../../assets/Logo.svg';
+import SearchIcon from '../../assets/Search.svg';
+import UserLogo from '../../assets/UserLogo.png';
+
+import useStyles from './styles';
 
 function Header() {
   const styles = useStyles();
   const dispatch = useDispatch();
+  const {pathname} = useLocation();
   const {logined} = useSelector(state => state.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const appBarClass = pathname === '/' ? styles.appBarHome : styles.appBar;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -66,10 +45,12 @@ function Header() {
   const onSignUp = () => dispatch(setModal('signUp'));
 
   return (
-    <AppBar position="fixed" color="transparent" className={styles.appBar}>
+    <AppBar position="fixed" color="transparent" className={appBarClass}>
       <Container maxWidth="xl">
         <Grid container alignItems="center">
-          <img src={Logo} alt="logo" />
+          <Link to="/">
+            <img src={Logo} alt="logo" />
+          </Link>
           <FilledInput
             className={styles.input}
             type="text"
