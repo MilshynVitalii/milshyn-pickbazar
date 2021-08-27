@@ -117,6 +117,11 @@ export default makeStyles(({palette}) => ({
     '&:hover': {
       backgroundColor: palette.primary.main,
       color: '#ffffff'
+    },
+    '&:disabled': {
+      backgroundColor: palette.primary.main,
+      color: '#ffffff',
+      opacity: 0.7
     }
   }
 }));

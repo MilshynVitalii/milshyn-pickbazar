@@ -9,6 +9,7 @@ import Alert from '@material-ui/lab/Alert';
 import Header from './components/Header';
 import Modal from './components/Modal';
 import GoogleAuthCallback from './components/GoogleAuthCallback';
+import Cart from './components/Cart';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Checkout from './pages/Checkout';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/auth/google/callback" component={GoogleAuthCallback}/>
       </Switch>
       <Modal />
+      <Cart />
     </ThemeProvider>
   );
 }

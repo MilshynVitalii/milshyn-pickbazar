@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 import Badge from '@material-ui/core/Badge';
@@ -10,9 +11,14 @@ import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Box from '@material-ui/core/Box';
 
+import {addToCart} from '../../redux/actions/cart';
 import CartBtn from './CartBtn';
 
 function ProductItem({product, styles}) {
+  const dispatch = useDispatch();
+
+  const onCartAdd = (e) => dispatch(addToCart(product.id));
+
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card raised={false} elevation={0} className={styles.card}>
@@ -42,7 +48,7 @@ function ProductItem({product, styles}) {
               ${product.price}
             </Typography>
           </Box>
-          <CartBtn styles={styles} />
+          <CartBtn id={product.id} styles={styles} onCartAdd={onCartAdd} />
         </CardActions>
       </Card>
     </Grid>
