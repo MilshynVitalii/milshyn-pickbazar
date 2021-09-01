@@ -2,7 +2,7 @@ import {SIGN_UP, SIGN_IN, GOOGLE_SIGN_IN, SET_LOGINED} from '../types';
 
 const initialState = {
     logined: false,
-    userData: ''
+    userData: {}
 };
 
 function authReducer(state = initialState, action) {

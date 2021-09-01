@@ -2,6 +2,7 @@ import * as appApi from '../../api/app';
 import {SHOW_ALERT,
   HIDE_ALERT,
   SET_MODAL,
+  SET_CHECKOUT_MODAL,
   FETCH_CAROUSEL_DATA,
   FETCH_CATEGORIES,
   SET_ACTIVE_CATEGORY
@@ -27,6 +28,13 @@ export function hideAlert() {
 export function setModal(modal) {
   return {
     type: SET_MODAL,
+    payload: modal
+  }
+}
+
+export function setCheckoutModal(modal) {
+  return {
+    type: SET_CHECKOUT_MODAL,
     payload: modal
   }
 }

@@ -87,9 +87,22 @@ export default makeStyles(({palette}) => ({
     fontSize: '13px',
     padding: '10px',
     minWidth: '85px',
+    textDecoration: 'none',
+    color: palette.primary.main,
+    fontWeight: 700,
+    textAlign: 'center',
     '&:hover': {
       borderWidth: '2px',
       backgroundColor: lightGreen[50]
+    }
+  },
+  checkoutBtnDisabled: {
+    cursor: 'auto',
+    pointerEvents: 'none',
+    borderColor: '#cccccc',
+    color: '#cccccc',
+    '&:hover': {
+      backgroundColor: '#ffffff'
     }
   },
   checkoutText: {

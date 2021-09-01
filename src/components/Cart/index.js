@@ -1,5 +1,7 @@
 import React from 'react';
+import cn from 'classnames';
 import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
@@ -25,6 +27,9 @@ function OpenPanel() {
   const total = Object.values(products).reduce((t, pr) => t + pr.price * pr.count, 0);
 
   const toggleOpen = (state) => (event) => setCartOpen(state);
+  const onCheckout = (e) => total.toFixed() === '0' ? e.preventDefault() : setCartOpen(false);
+
+  const checkoutLinkClass = cn(styles.checkoutBtn, {[styles.checkoutBtnDisabled]: total.toFixed() === '0'});
 
   return (
     <>
@@ -37,7 +42,6 @@ function OpenPanel() {
           ${total.toFixed(2)}
         </Button>
       </Paper>
-      
       <Drawer 
         anchor="right" 
         open={cartOpen} 
@@ -69,7 +73,7 @@ function OpenPanel() {
           <CardActions className={styles.cartAction}>
             <Box mt={2} className={styles.checkout}>
               <Typography variant="body2" component="span" color="inherit" className={styles.checkoutText}>Checkout</Typography>
-              <Button variant="outlined" color="primary" className={styles.checkoutBtn}>${total.toFixed(2)}</Button>
+              <Link to="/checkout" className={checkoutLinkClass} onClick={onCheckout}>${total.toFixed(2)}</Link>
             </Box>
           </CardActions>
         </Card>

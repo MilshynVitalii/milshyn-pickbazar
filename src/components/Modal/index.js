@@ -15,8 +15,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import ModalPortal from './ModalPortal';
 
+import ModalPortal from '../ModalPortal';
 import OAuth from './OAuth';
 import {setModal} from '../../redux/actions/app';
 import {modalsDescription as modals} from './constants';
