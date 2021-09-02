@@ -13,6 +13,7 @@ import Cart from './components/Cart';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Checkout from './pages/Checkout';
+import Order from './pages/Order';
 
 import theme from './theme';
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/product/:productID" component={Product} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/order" component={Order} />
         <Route path="/auth/google/callback" component={GoogleAuthCallback}/>
       </Switch>
       <Modal />

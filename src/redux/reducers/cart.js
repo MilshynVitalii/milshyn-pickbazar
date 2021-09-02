@@ -1,4 +1,4 @@
-import {ADD_TO_CART, CHANGE_COUNT, REMOVE_FROM_CART} from '../types'; 
+import {ADD_TO_CART, CHANGE_COUNT, REMOVE_FROM_CART, CLEAN_CART} from '../types'; 
 
 const initialState = {
   products: {},
@@ -30,6 +30,12 @@ function cartReducer(state = initialState, action) {
         ...state,
         products: newStateProducts,
         cartItemsLength: state.cartItemsLength - 1
+      }
+    case CLEAN_CART:
+      return {
+        ...state,
+        products: {},
+        cartItemsLength: 0
       }
     default:
       return state

@@ -5,13 +5,15 @@ import app from './app';
 import products from './products';
 import cart from './cart';
 import checkout from './checkout';
+import order from './order';
 
 const rootReducer = combineReducers({
   app,
   auth,
   products,
   cart,
-  checkout
+  checkout,
+  order
 });
   
 export default rootReducer;

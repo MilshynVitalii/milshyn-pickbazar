@@ -1,7 +1,7 @@
 import api from './';
 
 async function fetchOrderData(data) {
-  const res = await api.get('/orders', data);
+  const res = await api.post('/orders', data);
   return res;
 }
 

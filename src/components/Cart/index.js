@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,6 +21,7 @@ import useStyles from './styles';
 
 function OpenPanel() {
   const styles = useStyles();
+  const location = useLocation();
   const [cartOpen, setCartOpen] = React.useState(false);
   const {products, cartItemsLength} = useSelector(state => state.cart);
 
@@ -33,15 +34,19 @@ function OpenPanel() {
 
   return (
     <>
-      <Paper elevation={0} className={styles.openCart}>
-        <Box mb={1.5} className={styles.textBox}>
-          <BagIcon />
-          <Typography variant="caption" component="div" align="center" color="inherit">{cartItemsLength} Item(s)</Typography>
-        </Box>
-        <Button variant="contained" color="inherit" fullWidth={true} className={styles.openBtn} onClick={toggleOpen(true)}>
-          ${total.toFixed(2)}
-        </Button>
-      </Paper>
+      {
+        !location.pathname.includes('order') && (
+          <Paper elevation={0} className={styles.openCart}>
+            <Box mb={1.5} className={styles.textBox}>
+              <BagIcon />
+              <Typography variant="caption" component="div" align="center" color="inherit">{cartItemsLength} Item(s)</Typography>
+            </Box>
+            <Button variant="contained" color="inherit" fullWidth={true} className={styles.openBtn} onClick={toggleOpen(true)}>
+              ${total.toFixed(2)}
+            </Button>
+          </Paper>
+        )
+      }
       <Drawer 
         anchor="right" 
         open={cartOpen} 

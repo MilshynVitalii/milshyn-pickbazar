@@ -1,5 +1,5 @@
 import store from '../store'; 
-import {ADD_TO_CART, CHANGE_COUNT, REMOVE_FROM_CART} from '../types'; 
+import {ADD_TO_CART, CHANGE_COUNT, REMOVE_FROM_CART, CLEAN_CART} from '../types'; 
 
 export function addToCart(id) {
   const {products: {products}} = store.getState();
@@ -23,5 +23,11 @@ export function removeFromCart(id) {
   return { 
     type: REMOVE_FROM_CART,
     payload: id
+  }
+}
+
+export function cleanCart() {
+  return { 
+    type: CLEAN_CART
   }
 }
