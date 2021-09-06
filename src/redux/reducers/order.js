@@ -5,7 +5,7 @@ const initialState = {
   data: {},
 };
 
-function orderReducer(state = initialState, action) {
+const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ORDER_DATA: {
       return {

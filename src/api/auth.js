@@ -1,18 +1,9 @@
 import api from './';
 
-async function signUp(data) {
-    const res = await api.post(`/auth/local/register`, data);
-    return res;
-}
+const signUp = async (data) => await api.post(`/auth/local/register`, data);
 
-async function signIn(data) {
-    const res = await api.post(`/auth/local`, data);
-    return res;
-}
+const signIn = async (data) => await api.post(`/auth/local`, data);
 
-async function googleSignIn(data) {
-    const res = await api.get('/auth/google/callback', data);
-    return res;
-}
+const googleSignIn = async (data) => await api.get('/auth/google/callback', data);
 
 export {signUp, signIn, googleSignIn};

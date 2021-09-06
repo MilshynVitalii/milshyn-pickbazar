@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Link, useLocation} from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
@@ -14,21 +14,32 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CloseIcon from '@material-ui/icons/Close';
 
+import {showAlert, setModal} from '../../redux/actions/app';
 import {ReactComponent  as BagIcon} from '../../assets/bag.svg';
 import CartProduct from './CartProduct';
 import EmptyIcon from '../../assets/empty.svg';
 import useStyles from './styles';
 
-function OpenPanel() {
+const OpenPanel = () => {
   const styles = useStyles();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [cartOpen, setCartOpen] = React.useState(false);
   const {products, cartItemsLength} = useSelector(state => state.cart);
+  const {logined} = useSelector(state => state.auth);
 
   const total = Object.values(products).reduce((t, pr) => t + pr.price * pr.count, 0);
 
-  const toggleOpen = (state) => (event) => setCartOpen(state);
-  const onCheckout = (e) => total.toFixed() === '0' ? e.preventDefault() : setCartOpen(false);
+  const toggleOpen = (state) => () => setCartOpen(state);
+  const onCheckout = (e) => {
+    if(logined) {
+      e.preventDefault();
+      dispatch(showAlert('You must first register or login to proceed with the purchase', 'error', 5000));
+      dispatch(setModal('signIn'));
+      return;
+    }
+    setCartOpen(false);
+  }
 
   const checkoutLinkClass = cn(styles.checkoutBtn, {[styles.checkoutBtnDisabled]: total.toFixed() === '0'});
 

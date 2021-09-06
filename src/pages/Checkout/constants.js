@@ -27,9 +27,9 @@ export const checkoutData = [
     link: '+ Add Card',
     type: 'checkout_payment',
     items: [
-      {id: 1, title: 'Visa', description: '**** **** **** 4355'},
-      {id: 2, title: 'Visa', description: '**** **** **** 4355'},
-      {id: 3, title: 'Visa', description: '**** **** **** 4355'}
+      {id: 1, title: 'John Doe', description: '**** **** **** 4355'},
+      {id: 2, title: 'John Doe', description: '**** **** **** 4355'},
+      {id: 3, title: 'John Doe', description: '**** **** **** 4355'}
     ]
   }
 ];

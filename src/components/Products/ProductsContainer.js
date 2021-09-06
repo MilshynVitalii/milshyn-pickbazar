@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import ProductsItem from './ProductsItem';
 import EmptyIcon from '../../assets/empty.svg';
 
-function Products({products, styles, fetchMore, loadMoreProducts}) {
+const Products = ({products, styles, fetchMore, loadMoreProducts}) => {
   return (
     <Grid container spacing={2} className={cn([styles.products], {[styles.emptyCategory]: !!products.length === false})}>
       {

@@ -14,7 +14,7 @@ import {deleteCheckoutData, setActiveItem, changeCheckoutItem} from '../../redux
 import {fetchOrderData} from '../../redux/actions/order';
 import CardItem from './CardItem';
 
-function Card({id, cardInfo, styles}) {
+const Card = ({id, cardInfo, styles}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const {isLoaded} = useSelector(state => state.order);
@@ -37,18 +37,16 @@ function Card({id, cardInfo, styles}) {
 
   const onOrderButtonClick = () => {
     const orderData = {
+      when: getItemDescription('checkout_schedule') || null,
       address: getItemDescription('checkout_address') || null,
       phone:  getItemDescription('checkout_phone') || null,
-      when: getItemDescription('checkout_schedule') || null,
       products: cartItemsLength ? Object.keys(products) : null,
       email: userData.email || null
     };
     
     const allowToOrder = Object.entries(orderData).every(([key, data]) => {
       if(data === null) {
-        key === 'email'
-        ? dispatch(showAlert(`No ${key} provided. Please sign in or register`, 'error', 5000))
-        : key === 'when'
+        key === 'when'
         ? dispatch(showAlert(`No schedule provided`, 'error', 5000))
         : dispatch(showAlert(`No ${key} provided`, 'error', 5000))
 
@@ -64,20 +62,21 @@ function Card({id, cardInfo, styles}) {
   return (
     <Box mb={1.25} className={styles.card}>
       <Grid container spacing={1} className={styles.cardHeader}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Typography variant="body1" component="span" className={styles.cardNumer}>{id}</Typography>
           <Typography variant="body1" component="span" className={styles.cardTitle}>{cardInfo.title}</Typography>
         </Grid>
-        <Grid item xs={6} className={styles.linkCard}>
+        <Grid item xs={12} sm={6} className={styles.linkCard}>
           <Link href="" color="inherit" className={styles.modalLink} onClick={openModal}>{cardInfo.link}</Link>
         </Grid>
       </Grid>
       <Grid container spacing={1}>
         {
           checkoutData[cardInfo.type].map((item ,i) => (
-            <Grid key={i} item xs={4}>
+            <Grid key={i} item xs={12} sm={4}>
               <CardItem 
                 itemInfo={item}
+                type={cardInfo.type}
                 deleteItem={deleteItem}
                 changeItem={changeItem}
                 setActive={setActive}

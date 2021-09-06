@@ -20,7 +20,7 @@ import {ReactComponent as Empty} from '../../assets/empty.svg';
 
 import useStyles from './styles';
 
-function Product() {
+const Product = () => {
   const styles = useStyles();
   const productsStyles = useProductsStyles();
   const {productID} = useParams();

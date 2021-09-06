@@ -1,6 +1,12 @@
 import {makeStyles} from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles(({breakpoints}) => ({
+  order: {
+    [breakpoints.up('sm')]: {
+      paddingLeft: '60px',
+      paddingRight: '60px'
+    }
+  },
   subTitle: {
     fontSize: '15px',
     margin: '30px 0'
@@ -19,7 +25,4 @@ export default makeStyles({
   detailsTitle: {
     margin: '60px 0 30px'
   },
-  detailsRow: {
-    marginBottom: '20px'
-  }
-});
+}));

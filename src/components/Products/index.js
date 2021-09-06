@@ -9,7 +9,7 @@ import {fetchProducts} from '../../redux/actions/products';
 
 import useStyles from './styles';
 
-function Products() {
+const Products = () => {
   const styles = useStyles();
   const {products, fetchMore} = useSelector(state => state.products);
   const dispatch = useDispatch();

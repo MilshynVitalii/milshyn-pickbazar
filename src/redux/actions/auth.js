@@ -2,7 +2,7 @@ import * as auth from '../../api/auth';
 import {SIGN_UP, SIGN_IN, GOOGLE_SIGN_IN, SET_LOGINED} from '../types';
 import {showAlert, setModal} from './app';
 
-export function signUp(data) {
+const signUp = (data) => {
   return async (dispatch) => {
     try {
       const res = await auth.signUp(data);
@@ -15,7 +15,7 @@ export function signUp(data) {
   };
 }
 
-export function signIn(data) {
+const signIn = (data) => {
   return async (dispatch) => {
     try {
       const res = await auth.signIn(data);
@@ -28,7 +28,7 @@ export function signIn(data) {
   };
 }
 
-export function googleSignIn(data) {
+const googleSignIn = (data) => {
   return async (dispatch) => {
     try {
       const res = await auth.googleSignIn(data);
@@ -40,9 +40,9 @@ export function googleSignIn(data) {
   };
 }
 
-export function setLogined(status) {
-  return {
-    type: SET_LOGINED,
-    payload: status
-  }
-}
+const setLogined = (status) => ({
+  type: SET_LOGINED,
+  payload: status
+});
+
+export {signUp, signIn, googleSignIn, setLogined};

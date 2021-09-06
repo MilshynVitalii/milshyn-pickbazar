@@ -1,6 +1,9 @@
 import {makeStyles} from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles(({breakpoints}) => ({
+  header: {
+    flexWrap: 'nowrap'
+  },
   appBar: {
     boxShadow: 'none',
     backgroundColor: '#ffffff'
@@ -9,9 +12,15 @@ export default makeStyles({
     boxShadow: 'none',
     backgroundColor: '#fafafa'
   },
+  logo: {
+    margin: '23px 0'
+  },
   input: {
     width: '630px',
-    margin: '10px 25px'
+    margin: '0 25px',
+    [breakpoints.down('xs')]: {
+      display: 'none'
+    }
   },
   btn: {
     marginLeft: 'auto'
@@ -29,4 +38,4 @@ export default makeStyles({
     fontWeight: 700,
     padding: '16px 30px'
   }
-});
+}));

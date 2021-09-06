@@ -4,15 +4,13 @@ import {useDispatch} from 'react-redux';
 
 import {googleSignIn} from '../redux/actions/auth';
 
-function GoogleAuthCallback() {
+const GoogleAuthCallback = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 
   React.useEffect(() => {
-    if (!location) {
-      return;
-    }
+    if (!location) return;
     
     const searchParams = new URLSearchParams(location.search);
     const access_token = searchParams.get('access_token');

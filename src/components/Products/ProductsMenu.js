@@ -14,7 +14,7 @@ import {fetchProducts} from '../../redux/actions/products';
 import {setActiveCategory} from '../../redux/actions/app';
 import {menuIcons} from './constants';
 
-function ProductsMenu({styles}) {
+const ProductsMenu = ({styles}) => {
   const dispatch = useDispatch();
   const {categories, activeCategory} = useSelector(state => state.app);
 

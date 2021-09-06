@@ -19,7 +19,7 @@ const initialState = {
   activeCategory: {parent: null, child: null}
 };
 
-function appReducer(state = initialState, action) {
+const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_ALERT:
       return {...state, alert: {...action.payload}}

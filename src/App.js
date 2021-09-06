@@ -6,6 +6,7 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Alert from '@material-ui/lab/Alert';
 
+import PrivateRoute from './router/PrivateRoute';
 import Header from './components/Header';
 import Modal from './components/Modal';
 import GoogleAuthCallback from './components/GoogleAuthCallback';
@@ -17,7 +18,7 @@ import Order from './pages/Order';
 
 import theme from './theme';
 
-function App() {
+const App = () => {
   const {alert} = useSelector(state => state.app);
 
   return (
@@ -28,8 +29,8 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/product/:productID" component={Product} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/order" component={Order} />
+        <PrivateRoute path="/checkout" component={Checkout} exact/>
+        <PrivateRoute path="/order" component={Order} />
         <Route path="/auth/google/callback" component={GoogleAuthCallback}/>
       </Switch>
       <Modal />

@@ -10,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import {useSelector} from 'react-redux';
 
-function Order({styles}) {
+const Order = ({styles}) => {
   const {products, cartItemsLength} = useSelector(state => state.cart);
 
   const deliveryFee = 3;
@@ -18,7 +18,7 @@ function Order({styles}) {
   const total = Object.values(products).reduce((t, pr) => t + pr.price * pr.count, 0);
 
   return (
-    <Box ml={2} className={styles.order}>
+    <Box className={styles.order}>
       <Typography variant="body1" component="h4" align="center" className={styles.orderTitle}>
         {cartItemsLength ? 'Your Order' : 'No products'}
       </Typography>

@@ -2,7 +2,7 @@ import store from '../store';
 import * as productsApi from '../../api/products';
 import {FETCH_PRODUCTS, SET_ACTIVE_PRODUCT, SET_PRODUCT_FETCHING} from '../types';
 
-export function fetchProducts(config = {}, productsConcat = false) {
+const fetchProducts = (config = {}, productsConcat = false) => {
   const {app: {activeCategory}, products: {fetchingPosition, fetchingLimit}} = store.getState();
 
   return async (dispatch) => {
@@ -25,14 +25,15 @@ export function fetchProducts(config = {}, productsConcat = false) {
   }
 }
 
-export function setActiveProduct(id){
+const setActiveProduct = (id)=> {
   return async (dispatch) => {
     dispatch({type: SET_PRODUCT_FETCHING, payload: true});
+
     const res = await productsApi.fetchProducts({params: {id}});
-    dispatch({
-      type: SET_ACTIVE_PRODUCT,
-      payload: res.data[0]
-    });
+    
+    dispatch({type: SET_ACTIVE_PRODUCT, payload: res.data[0]});
     dispatch({type: SET_PRODUCT_FETCHING, payload: false});
   }
 }
+
+export {fetchProducts, setActiveProduct};

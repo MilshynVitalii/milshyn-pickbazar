@@ -15,34 +15,24 @@ const initialState = {
   itemToChange: null
 };
 
-function checkoutReducer(state = initialState, action) {
+const checkoutReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CHECKOUT_DATA: {
-      const {type, data} = action.payload;
-      const typeData = state.itemToChange
-          ? state[type].map(dt => dt.id !== state.itemToChange ? dt : {...data})
-          : state[type].concat([data]);
-
-      localStorage.setItem(type, JSON.stringify(typeData));
       return {
         ...state,
-        [type]: typeData
+        [action.payload.type]: action.payload.data
       }
     }
     case DELETE_CHECKOUT_DATA: {
-      const {type, id} = action.payload;
-      const typeData = state[type].filter(data => data.id !== id)
-      localStorage.setItem(type, JSON.stringify(typeData));
       return {
         ...state,
-        [type]: typeData
+        [action.payload.type]: action.payload.data
       }
     }
     case SET_ACTIVE_ITEM: {
-      const {type, id} = action.payload;
       return {
         ...state,
-        active_items: {...state.active_items, [type]: id}
+        active_items: {...state.active_items, [action.payload.type]: action.payload.id}
       }
     }
     case SET_ITEM_TO_CHANGE:

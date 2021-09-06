@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import CartButton from '../Products/CartBtn';
 import {addToCart} from '../../redux/actions/cart';
 
-function Description({isFetching, product, styles}) {
+const Description = ({isFetching, product, styles}) => {
   const dispatch = useDispatch();
 
   const isVisibleInfo = product?.id || isFetching ? '' : styles.infoInvisible;
@@ -17,7 +17,7 @@ function Description({isFetching, product, styles}) {
   const nameText = isFetching ? 'Fetching Data' : product?.name;
   const priceText = isFetching ? '$0' : product?.price;
 
-  const onCartAdd = (e) => dispatch(addToCart(product.id));
+  const onCartAdd = () => dispatch(addToCart(product.id));
 
   return (
     <> 

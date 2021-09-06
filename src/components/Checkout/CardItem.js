@@ -11,16 +11,27 @@ import CreateIcon from '@material-ui/icons/Create';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function CardItem({itemInfo, deleteItem, changeItem, setActive, active, controls, styles}) {
+import {ReactComponent as VisaIcon} from '../../assets/visa.svg';
+
+const CardItem = ({itemInfo, type, deleteItem, changeItem, setActive, active, controls, styles}) => {
+  const isPaymentItem = type === 'checkout_payment';
+  const cardStyles = cn(styles.item, {[styles.paymentCard]: isPaymentItem, [styles.activeItem]: active})
 
   const setAcitveItem = () => setActive(itemInfo.id);
   const onChange = (e) => {e.stopPropagation(); changeItem(itemInfo.id)};
   const onDelete = (e) => {e.stopPropagation(); deleteItem(itemInfo.id)};
 
   return (
-    <Card elevation={0} className={cn(styles.item, {[styles.activeItem]: active})} onClick={setAcitveItem}>
+    <Card elevation={0} className={cardStyles} onClick={setAcitveItem}>
       <CardActions className={styles.itemActions}>
-        <Typography variant="body2" component="span" className={styles.itemTitle}>{itemInfo.title}</Typography>
+        {
+          isPaymentItem 
+          ? <>
+              <VisaIcon />
+              <Typography variant="body2" component="div" className={styles.visaTitle}>Card Number</Typography>
+          </>
+          : <Typography variant="body2" component="span" className={styles.itemTitle}>{itemInfo.title}</Typography>
+        }
         {
           controls && (
             <Box className={styles.itemControls}>
@@ -35,9 +46,12 @@ function CardItem({itemInfo, deleteItem, changeItem, setActive, active, controls
         }
       </CardActions>
       <CardContent className={styles.itemContent}>
-        <Typography variant="body1" component="div">
-          {itemInfo.description}
-        </Typography>
+        <Typography variant="body1" component="div" className={cn(styles.itemDescr, {[styles.visaNumber]: isPaymentItem})}>{itemInfo.description}</Typography>
+        {
+          isPaymentItem && (
+            <Typography variant="body2" component="div" className={styles.visaName}>{itemInfo.title}</Typography>
+          )
+        }
       </CardContent>
     </Card>
   )
@@ -47,6 +61,7 @@ export default CardItem;
 
 CardItem.propTypes = {
   itemInfo: PropTypes.object.isRequired,
+  type: PropTypes.string,
   deleteItem: PropTypes.func.isRequired,
   changeItem: PropTypes.func.isRequired,
   setActive: PropTypes.func.isRequired,

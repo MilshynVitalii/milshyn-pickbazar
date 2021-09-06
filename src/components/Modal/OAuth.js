@@ -6,18 +6,10 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-import FacebookIcon from '../../assets/FacebookIcon.svg'
-import GoogleIcon from '../../assets/GoogleIcon.svg'
+import {ReactComponent as FacebookIconComponent} from '../../assets/FacebookIcon.svg';
+import {ReactComponent as GoogleIconComponent} from '../../assets/GoogleIcon.svg';
 
-function FaceBookIconComponent() {
-  return <img src={FacebookIcon} alt="facebook" />
-}
-
-function GoogleIconComponent() {
-  return <img src={GoogleIcon} alt="facebook" />
-}
-
-function OAuth({styles}) {
+const OAuth = ({styles}) => {
 
   return (
     <Box component="span">
@@ -27,7 +19,7 @@ function OAuth({styles}) {
         type="submit" 
         color="primary" 
         variant="contained" 
-        startIcon={<SvgIcon component={FaceBookIconComponent} />}
+        startIcon={<SvgIcon viewBox="0 0 18 18" component={FacebookIconComponent} />}
         className={styles.facebookButton}
         fullWidth
       >Continue with Facebook</Button>
@@ -35,7 +27,7 @@ function OAuth({styles}) {
         href={`${process.env.REACT_APP_BASE_URL}/connect/google`}
         color="primary" 
         variant="contained" 
-        startIcon={<SvgIcon component={GoogleIconComponent} />}
+        startIcon={<SvgIcon viewBox="0 0 18 18" component={GoogleIconComponent} />}
         className={styles.googleButton}
         fullWidth 
       >Continue with Google</Button>

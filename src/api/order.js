@@ -1,8 +1,5 @@
 import api from './';
 
-async function fetchOrderData(data) {
-  const res = await api.post('/orders', data);
-  return res;
-}
+const fetchOrderData = async (data) => await api.post('/orders', data);
 
 export {fetchOrderData};

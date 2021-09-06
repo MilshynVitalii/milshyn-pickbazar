@@ -20,7 +20,7 @@ import UserLogo from '../../assets/UserLogo.png';
 
 import useStyles from './styles';
 
-function Header() {
+const Header = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
   const {pathname} = useLocation();
@@ -29,27 +29,17 @@ function Header() {
 
   const appBarClass = pathname === '/' ? styles.appBarHome : styles.appBar;
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const logout = () => {
-    dispatch(setLogined(false));
-    handleClose();
-  }
-
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
   const onSignUp = () => dispatch(setModal('signUp'));
+  const logout = () => {dispatch(setLogined(false)); handleClose()};
 
   return (
     <AppBar position="fixed" color="transparent" className={appBarClass}>
       <Container maxWidth="xl">
-        <Grid container alignItems="center">
+        <Grid container alignItems="center" className={styles.header}>
           <Link to="/">
-            <img src={Logo} alt="logo" />
+            <img src={Logo} alt="logo" className={styles.logo}/>
           </Link>
           <FilledInput
             className={styles.input}

@@ -22,7 +22,7 @@ import {setModal} from '../../redux/actions/app';
 import {modalsDescription as modals} from './constants';
 import useStyles from './styles';
 
-function Modal() {
+const Modal = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
   const {modal} = useSelector(state => state.app);
@@ -31,12 +31,7 @@ function Modal() {
 
   const handleModalVisibility = () => dispatch(setModal(''));
 
-  const onRedirect = to => {
-    return e => {
-      e.preventDefault();
-      dispatch(setModal(to));
-    }
-  }
+  const onRedirect = to => e => {e.preventDefault(); dispatch(setModal(to))};
 
   return (
     <ModalPortal>

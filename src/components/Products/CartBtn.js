@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Button from '@material-ui/core/Button';
 
-function CartBtn({id, disabled, onCartAdd, styles}) {
+const CartBtn = ({id, disabled, onCartAdd, styles}) => {
   const {products: cartProducts} = useSelector(state => state.cart);
 
   return (

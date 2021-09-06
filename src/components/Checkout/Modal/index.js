@@ -12,12 +12,12 @@ import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-import {modalsDescription as modals} from './constants';
+import {modalsDescription as modals} from './config';
 import {setCheckoutModal} from '../../../redux/actions/app';
 import {addCheckoutData, changeCheckoutItem} from '../../../redux/actions/checkout';
 import ModalPortal from '../../ModalPortal';
 
-function Modal({styles}) {
+const Modal = ({styles}) => {
   const dispatch = useDispatch();
   const {checkoutModal: modal} = useSelector(state => state.app);
   const {itemToChange} = useSelector(state => state.checkout);
@@ -26,10 +26,8 @@ function Modal({styles}) {
 
   const handleModalVisibility = () => {dispatch(changeCheckoutItem(null)); dispatch(setCheckoutModal(''))}
 
-  const onSubmit = (values) => {
-    dispatch(addCheckoutData(modal, values));
-    handleModalVisibility();
-  }
+  const onSubmit = (values) => {dispatch(addCheckoutData(modal, values)); handleModalVisibility()};
+
 
   return (
     <ModalPortal>
@@ -54,15 +52,16 @@ function Modal({styles}) {
               return <form autoComplete="off">
                 {
                   modals[modal]?.values && Object.keys(modals[modal].values).map(key => {
+                    const inputKey = modal === 'checkout_phone' ? 'phone' : key;
                     return <FormControl key={key} className={styles.modalControl} error={errors[key] && touched[key]} fullWidth>
                       <FilledInput
                         name={key}
                         type="text"
-                        placeholder={`Enter ${key}`}
+                        placeholder={`Enter ${inputKey}`}
                         value={values[key]}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={cn(styles.modalInput, {[styles.modalTextField]: key === 'description'})}
+                        className={cn(styles.modalInput, {[styles.modalTextField]: inputKey === 'description'})}
                       />
                       {errors[key] && touched[key] && <FormHelperText className={styles.modalError}>{errors[key]}</FormHelperText>}
                     </FormControl>

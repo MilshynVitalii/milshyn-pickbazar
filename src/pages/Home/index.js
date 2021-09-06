@@ -14,7 +14,7 @@ import {fetchCategories, setActiveCategory} from '../../redux/actions/app';
 
 import useStyles from './styles';
 
-function Home() {
+const Home = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
 

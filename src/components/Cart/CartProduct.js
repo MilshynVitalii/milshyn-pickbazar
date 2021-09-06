@@ -9,11 +9,11 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import {changeCount, removeFromCart} from '../../redux/actions/cart';
 
-function CartProduct({product, styles}) {
+const CartProduct = ({product, styles}) => {
   const dispatch = useDispatch();
 
-  const onChangeCount = (id, count) => (e) => dispatch(changeCount(id, count));
-  const onRemoveProduct = (id) => (e) => dispatch(removeFromCart(id));
+  const onChangeCount = (id, count) => () => dispatch(changeCount(id, count));
+  const onRemoveProduct = (id) => () => dispatch(removeFromCart(id));
 
   return (
     <Box py={1} px={1.7} className={styles.product}>

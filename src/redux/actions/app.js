@@ -8,7 +8,7 @@ import {SHOW_ALERT,
   SET_ACTIVE_CATEGORY
 } from '../types';
 
-export function showAlert(text, type, time) {
+const showAlert = (text, type, time) => {
   return async (dispatch) => {
     dispatch({
       type: SHOW_ALERT,
@@ -19,27 +19,19 @@ export function showAlert(text, type, time) {
   }
 }
 
-export function hideAlert() {
-  return {
-    type: HIDE_ALERT
-  }
-}
+const hideAlert = () => ({type: HIDE_ALERT});
 
-export function setModal(modal) {
-  return {
-    type: SET_MODAL,
-    payload: modal
-  }
-}
+const setModal = (modal) => ({
+  type: SET_MODAL,
+  payload: modal
+});
 
-export function setCheckoutModal(modal) {
-  return {
-    type: SET_CHECKOUT_MODAL,
-    payload: modal
-  }
-}
+const setCheckoutModal = (modal) => ({
+  type: SET_CHECKOUT_MODAL,
+  payload: modal
+});
 
-export function fetchCarouselData() {
+const fetchCarouselData = () => {
   return async (dispatch) => {
     const res = await appApi.getCarouselData();
     dispatch({
@@ -49,7 +41,7 @@ export function fetchCarouselData() {
   }
 }
 
-export function fetchCategories() {
+const fetchCategories = () => {
   return async (dispatch) => {
     const res = await appApi.fetchCategories();
     dispatch({
@@ -59,7 +51,7 @@ export function fetchCategories() {
   }
 }
 
-export function setActiveCategory(parent = null, child = null) {
+const setActiveCategory = (parent = null, child = null) => {
   return { 
     type: SET_ACTIVE_CATEGORY,
     payload: {
@@ -68,3 +60,5 @@ export function setActiveCategory(parent = null, child = null) {
     }
   }
 }
+
+export {setActiveCategory, fetchCategories, fetchCarouselData, showAlert, hideAlert, setModal, setCheckoutModal};

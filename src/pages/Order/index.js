@@ -11,7 +11,7 @@ import {setLoaded} from '../../redux/actions/order';
 import {cleanCart} from '../../redux/actions/cart';
 import useStyles from './styles';
 
-function Order() {
+const Order = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
 
@@ -47,14 +47,14 @@ function Order() {
   };
 
   return (
-    <Box mt={8} mb={4} mx="auto" p={4} maxWidth="790px" bgcolor="#ffffff">
+    <Box mt={8} mb={4} mx="auto" py={4} px={2} maxWidth="790px" bgcolor="#ffffff" className={styles.order}>
       <Typography variant="h6" component="h3">Order Received</Typography>
       <Typography variant="body2" component="p" className={styles.subTitle}>Thank you. Your order has been received</Typography>
 
-      <Grid container>
+      <Grid container spacing={1}>
         {
           orderData.receive.map(({title, data}) => (
-            <Grid key={title} item xs={3}>
+            <Grid key={title} item xs={12} sm={3}>
               <Typography variant="body2" component="div" className={styles.textBold}>{title}</Typography> 
               <Typography variant="body2" component="div" className={cn(styles.text, styles.mainData)}>{data}</Typography> 
             </Grid>
@@ -66,11 +66,11 @@ function Order() {
 
       {
         orderData.details.map(({title, data}) => (
-          <Grid key={title} container className={styles.detailsRow}>
-            <Grid item xs={3}>
+          <Grid key={title} container spacing={2} className={styles.detailsRow}>
+            <Grid item xs={6} sm={3}>
               <Typography variant="body2" component="div" className={styles.textBold}>{title}</Typography> 
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={6} sm={9}>
               <Typography variant="body2" component="div" className={styles.text}>{data}</Typography> 
             </Grid>
           </Grid>
@@ -81,11 +81,11 @@ function Order() {
 
       {
         orderData.amount.map(({title, data}) => (
-          <Grid key={title} container className={styles.detailsRow}>
-            <Grid item xs={3}>
+          <Grid key={title} container spacing={2} className={styles.detailsRow}>
+            <Grid item xs={6} sm={3}>
               <Typography variant="body2" component="div" className={styles.textBold}>{title}</Typography> 
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={6} sm={9}>
               <Typography variant="body2" component="div" className={styles.text}>{data}</Typography> 
             </Grid>
           </Grid>

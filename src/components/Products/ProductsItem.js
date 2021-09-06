@@ -14,10 +14,10 @@ import Box from '@material-ui/core/Box';
 import {addToCart} from '../../redux/actions/cart';
 import CartBtn from './CartBtn';
 
-function ProductItem({product, styles}) {
+const ProductItem = ({product, styles}) => {
   const dispatch = useDispatch();
 
-  const onCartAdd = (e) => dispatch(addToCart(product.id));
+  const onCartAdd = () => dispatch(addToCart(product.id));
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>

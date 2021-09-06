@@ -1,21 +1,30 @@
 import {makeStyles} from '@material-ui/core/styles';
 
-export default makeStyles(({palette}) => ({
+export default makeStyles(({palette, breakpoints}) => ({
   checkout: {
-    marginTop: '100px'
+    marginTop: '100px',
+    [breakpoints.up('md')]: {
+      flexDirection: 'row-reverse'
+    }
   },
   cards: {
-    margin: '-22.5px'
+    [breakpoints.up('md')]: {
+      margin: '-22.5px'
+    }
   },
   card: {
     backgroundColor: '#ffffff',
     padding: '22.5px',
     boxShadow: '0px 2px 16px 0px #00000014',
     maxWidth: '640px',
-    marginLeft: 'auto'
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [breakpoints.up('md')]: {
+      marginRight: 0
+    }
   },
   cardHeader: {
-    marginBottom: '30px'
+    marginBottom: '30px',
   },
   cardNumer: {
     display: 'inline-block',
@@ -35,7 +44,10 @@ export default makeStyles(({palette}) => ({
     fontWeight: 700
   },
   linkCard: {
-    textAlign: 'right'
+    textAlign: 'center',
+    [breakpoints.up('sm')]: {
+      textAlign: 'right',
+    }
   },
   modalLink: {
     color: palette.primary.main,
@@ -55,10 +67,11 @@ export default makeStyles(({palette}) => ({
     }
   },
   activeItem: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff !important',
     border: `1px solid ${palette.primary.main}`
   },
   itemActions: {
+    display: 'block',
     padding: 0,
   },
   itemControls: {
@@ -70,6 +83,9 @@ export default makeStyles(({palette}) => ({
   itemTitle: {
     fontSize: '15px',
     fontWeight: 700
+  },
+  itemDescr: {
+    fontSize: '15px'
   },
   actionAdd: {
     color: '#ffffff',
@@ -91,13 +107,18 @@ export default makeStyles(({palette}) => ({
   itemContent: {
     padding: 0,
     paddingTop: '10px',
+    wordBreak: 'break-word',
     '&:last-child': {
       paddingBottom: 0
     }
   },
   order: {
-    marginTop: '-22.5px',
-    width: '250px'
+    width: '250px',
+    margin: '0 auto',
+    [breakpoints.up('md')]: {
+      margin: '-22.5px 0 0 30px',
+      width: '250px',
+    }
   },
   orderTitle: {
     fontSize: '15px',
@@ -157,5 +178,21 @@ export default makeStyles(({palette}) => ({
     fontSize: '13px',
     color: '#FF5B60',
     marginBottom: '30px'
+  },
+  paymentCard: {
+    backgroundColor: '#E4F4FF'
+  },
+  visaTitle: {
+    margin: '15px 0 0 0 !important',
+    color: '#77798C',
+    fontSize: '10px'
+  },
+  visaName: {
+    fontSize: '12px',
+    fontWeight: 700
+  },
+  visaNumber: {
+    fontSize: '14px',
+    fontWeight: 700
   }
 }));

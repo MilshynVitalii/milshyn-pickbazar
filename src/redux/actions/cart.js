@@ -1,7 +1,7 @@
 import store from '../store'; 
 import {ADD_TO_CART, CHANGE_COUNT, REMOVE_FROM_CART, CLEAN_CART} from '../types'; 
 
-export function addToCart(id) {
+const addToCart = (id) => {
   const {products: {products}} = store.getState();
   return { 
     type: ADD_TO_CART,
@@ -9,25 +9,16 @@ export function addToCart(id) {
   }
 }
 
-export function changeCount(id, count) {
-  return { 
-    type: CHANGE_COUNT,
-    payload: {
-      id,
-      count
-    }
-  }
-}
+const changeCount = (id, count) => ({ 
+  type: CHANGE_COUNT,
+  payload: {id, count}
+});
 
-export function removeFromCart(id) {
-  return { 
-    type: REMOVE_FROM_CART,
-    payload: id
-  }
-}
+const removeFromCart = (id) => ({ 
+  type: REMOVE_FROM_CART,
+  payload: id
+});
 
-export function cleanCart() {
-  return { 
-    type: CLEAN_CART
-  }
-}
+const cleanCart = () => ({type: CLEAN_CART});
+
+export {addToCart, changeCount, removeFromCart, cleanCart};

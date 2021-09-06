@@ -12,7 +12,7 @@ import SlideCard from './SlideCard';
 import {swiperBreakpoints} from '../../config/swiper';
 import useStyles from './styles';
 
-function Carousel() {
+const Carousel = () => {
   const styles = useStyles();
   const nextBntNavigation = React.useRef();
   const prevBntNavigation = React.useRef();
