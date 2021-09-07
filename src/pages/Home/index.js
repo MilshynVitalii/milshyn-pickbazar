@@ -8,9 +8,9 @@ import Box from '@material-ui/core/Box';
 
 import Carousel from '../../components/Carousel';
 import Products from '../../components/Products';
-import {fetchCarouselData} from '../../redux/actions/app';
 import {fetchProducts} from '../../redux/actions/products';
-import {fetchCategories, setActiveCategory} from '../../redux/actions/app';
+import {fetchCartProducts} from '../../redux/actions/cart';
+import {fetchCarouselData, fetchCategories, setActiveCategory} from '../../redux/actions/app';
 
 import useStyles from './styles';
 
@@ -19,6 +19,8 @@ const Home = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
+    const cartProducts = JSON.parse(sessionStorage.getItem('cartProducts')); 
+    cartProducts && dispatch(fetchCartProducts(Object.keys(cartProducts)));
     dispatch(fetchCarouselData());
     dispatch(fetchCategories());
     dispatch(setActiveCategory());

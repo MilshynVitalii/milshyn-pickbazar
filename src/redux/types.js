@@ -19,6 +19,7 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const CHANGE_COUNT = 'CHANGE_COUNT';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const CLEAN_CART = 'CLEAN_CART';
+export const FETCH_CART = 'FETCH_CART';
 
 export const ADD_CHECKOUT_DATA = 'ADD_CHECKOUT_DATA';
 export const DELETE_CHECKOUT_DATA = 'DELETE_CHECKOUT_DATA';
