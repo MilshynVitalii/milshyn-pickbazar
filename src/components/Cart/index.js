@@ -32,7 +32,7 @@ const OpenPanel = () => {
 
   const toggleOpen = (state) => () => setCartOpen(state);
   const onCheckout = (e) => {
-    if(logined) {
+    if(!logined) {
       e.preventDefault();
       dispatch(showAlert('You must first register or login to proceed with the purchase', 'error', 5000));
       dispatch(setModal('signIn'));
