@@ -1,13 +1,7 @@
 import api from './';
 
-async function getCarouselData() {
-    const res = await api.get('/coupons');
-    return res;
-}
+const getCarouselData = async () => await api.get('/coupons');
 
-async function fetchCategories() {
-    const res = await api.get('/categories');
-    return res;
-  }
+const fetchCategories = async () => await api.get('/categories');
 
 export {getCarouselData, fetchCategories};

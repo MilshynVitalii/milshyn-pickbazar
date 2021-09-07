@@ -2,10 +2,10 @@ import {SIGN_UP, SIGN_IN, GOOGLE_SIGN_IN, SET_LOGINED} from '../types';
 
 const initialState = {
     logined: false,
-    userData: ''
+    userData: {}
 };
 
-function authReducer(state = initialState, action) {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP:
       return {...state, logined: true, userData: action.payload}

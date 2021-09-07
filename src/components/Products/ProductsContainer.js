@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import ProductsItem from './ProductsItem';
-import {ReactComponent as Empty} from '../../assets/empty.svg';
+import EmptyIcon from '../../assets/empty.svg';
 
-function Products({products, styles, fetchMore, loadMoreProducts}) {
+const Products = ({products, styles, fetchMore, loadMoreProducts}) => {
   return (
     <Grid container spacing={2} className={cn([styles.products], {[styles.emptyCategory]: !!products.length === false})}>
       {
@@ -23,7 +23,7 @@ function Products({products, styles, fetchMore, loadMoreProducts}) {
             })
           : (
             <Grid item xs={12}>
-              <Empty/>
+              <img src={EmptyIcon} alt="" width="232px" height="292px"/>
               <Typography variant="subtitle1" color="textSecondary" component="p" className={styles.price}>
                 No products found by this category
               </Typography>

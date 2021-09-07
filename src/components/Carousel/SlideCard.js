@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import useStyles from './styles';
 
-function SlideCard({data}) {
+const SlideCard = ({data}) => {
   const styles = useStyles(data.gradientColors);
 
   return (

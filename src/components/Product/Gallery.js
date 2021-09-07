@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function Gallery({photos, styles}) {
+const Gallery = ({photos, styles}) => {
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
   
   return (

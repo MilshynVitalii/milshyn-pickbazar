@@ -1,6 +1,6 @@
-import axios from 'axios'
-import store from '../redux/store'
-import {showAlert} from '../redux/actions/app'
+import axios from 'axios';
+import store from '../redux/store';
+import {showAlert} from '../redux/actions/app';
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL
@@ -12,4 +12,4 @@ api.interceptors.response.use((response) => response, function (error) {
     }
 });
 
-export default api
+export default api;

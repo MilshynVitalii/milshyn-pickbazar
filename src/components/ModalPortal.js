@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function ModalPortal(props) {
+const ModalPortal = (props) => {
   const elem = React.useMemo(() => document.createElement('div'), []);
 
   React.useEffect(() => {

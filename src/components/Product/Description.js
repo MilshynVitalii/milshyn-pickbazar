@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useDispatch} from 'react-redux';
 
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import CartButton from '../Products/CartBtn';
+import {addToCart} from '../../redux/actions/cart';
 
-function Description({isFetching, product, styles}) {
+const Description = ({isFetching, product, styles}) => {
+  const dispatch = useDispatch();
 
   const isVisibleInfo = product?.id || isFetching ? '' : styles.infoInvisible;
   const nameClass = isFetching ? styles.fetching : styles.name;
   const priceClass = isFetching ? styles.fetching : styles.price;
   const nameText = isFetching ? 'Fetching Data' : product?.name;
   const priceText = isFetching ? '$0' : product?.price;
+
+  const onCartAdd = () => dispatch(addToCart(product.id));
 
   return (
     <> 
@@ -28,7 +33,7 @@ function Description({isFetching, product, styles}) {
       </Typography>
 
       <Box mt={3}>
-        <CartButton disabled={!Boolean(product?.name) || isFetching} styles={styles}/>
+        <CartButton disabled={!Boolean(product?.name) || isFetching} id={product?.id} styles={styles} onCartAdd={onCartAdd}/>
       </Box>
       <Box mt={2}>
         <Typography variant="body2" component="span" className={styles.categoryText}>{product?.category?.parentCategory?.title}</Typography>
